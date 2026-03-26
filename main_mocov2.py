@@ -224,8 +224,8 @@ def main():
     # MoCo
     parser.add_argument("--moco-dim", default=128, type=int, help="feature dimension (default: 128)")
     parser.add_argument("--moco-k", default=4096, type=int, help="queue size; number of negative keys (default: 4096)")
-    parser.add_argument("--moco-m", default=0.999, type=float, help="moco momentum of updating key encoder (default: 0.9)")
-    parser.add_argument("--moco-t", default=0.1, type=float, help="softmax temperature (default: 0.1)")
+    parser.add_argument("--moco-m", default=0.999, type=float, help="moco momentum of updating key encoder (default: 0.999)")
+    parser.add_argument("--moco-t", default=0.07, type=float, help="softmax temperature (default: 0.07)")
     parser.add_argument("--mlp", action="store_true", help="use mlp head")
     parser.add_argument("--cos", action="store_true", help="use cosine lr schedule")
 

@@ -1,33 +1,31 @@
-# MoCo-based-method-for-coherent-signal-enumeration-and-GAN-for-coherent-DOA-estimation-
-This is the code for the paper "Robust Coherent Source Enumeration and DOA Estimation via Momentum Contrast and Adversarial Decoherence"
+# MoCo-SourceEstimation: Supervised Contrastive Learning for Coherent Source Enumeration
 
-# MoCo-SourceEstimation: 基于监督对比学习的相干源个数估计
+This project provides a framework based on **MoCo v2 (Momentum Contrast)** and **Supervised Contrastive Learning** to estimate the number of coherent signal sources in array signal processing. The model achieves high accuracy in challenging environments with low SNR and strong source correlation.
 
-本项目提供了一套基于 **MoCo v2 (Momentum Contrast)** 改进的自监督/监督对比学习框架，专门用于解决阵列信号处理中的**相干源个数估计**问题。通过引入多尺度特征融合网络（MFFNet）和监督对比损失（SupCon Loss），模型能够在低信噪比和强相干环境下实现高精度的信噪源个数检测。
+## 🌟 Key Features
 
-## 🌟 核心特性
+* **Contrastive Learning Architecture**: Implements MoCo v2 with a query encoder, a momentum-updated key encoder, and a dynamic queue to manage negative samples.
+* **Supervised Contrastive Loss**: Includes `MoCoSupConLoss` to leverage label information, pulling samples of the same class together while pushing different classes apart in the embedding space.
+* **Physics-Based Data Generation**: A robust simulator for generating Sample Covariance Matrices (SCM) with various coherence modes: `full`, `partial`, and `random`.
+* **Advanced Backbones**: 
+    * **MFFNet**: A multi-scale fusion network featuring FPN/PAN structures and SE attention modules.
+    * **ResNet-based Encoders**: Modified ResNet architectures optimized for small-sized input matrices (e.g., 16x16).
+* **Baseline Comparisons**: Built-in implementations of traditional statistical methods like **AIC** and **MDL**.
 
-* **对比学习架构**：采用改进的 MoCo v2 结构，通过动量更新的队列维持大量的负样本。
-* **监督对比损失**：在 `SupLoss.py` 中实现了 `MoCoSupConLoss`，利用标签信息增强特征空间的类内聚合和类间分离。
-* **物理驱动的数据增强**：`data_generator.py` 模拟了真实的阵列信号物理模型，支持多种相干模式（完全相干、部分相干、自适应相干）。
-* **先进的网络骨干**：
-    * **MFFNet**: 包含 FPN（特征金字塔）和 PAN（路径聚合网络）结构，配合 SE（Squeeze-and-Excitation）注意力机制。
-    * **ResNetEncoder**: 适配小尺寸协方差矩阵输入（如 16x16）的改进型 ResNet。
-* **基准对比**：集成了传统的统计学估计方法（AIC, MDL），便于进行性能对标。
+## 📂 Project Structure
 
-## 📂 项目结构
+* `MoCov2/builder.py`: Core MoCo model logic (queue management and momentum updates).
+* `MoCov2/SupLoss.py`: Implementation of the Asymmetric Supervised Contrastive Loss.
+* `data/data_generator.py`: Signal simulation and SCM-to-3-channel image conversion.
+* `models/MFFNet.py`: Multi-scale feature fusion network architecture.
+* `main_mocov2.py`: The primary training script including queue warmup and the training loop.
+* `baseline/AIC_and_MDL.py`: Traditional source enumeration benchmarks.
 
-```text
-.
-├── MoCov2/
-│   ├── builder.py           # MoCo v2 模型构建器 (Query/Key 编码器, 动量更新, 队列管理)
-│   └── SupLoss.py           # 异步监督对比学习损失函数实现
-├── data/
-│   └── data_generator.py    # 阵列信号仿真器：生成协方差矩阵 (SCM) 并转换为 3 通道图像
-├── models/
-│   ├── MFFNet.py            # 多尺度特征融合网络 (Backbone + FPN + PAN)
-│   ├── ECNet.py / ERNet.py  # 用于对比或特定任务的轻量级 MLP 网络
-│   └── main_mocov2.py       # 训练主程序，包含数据加载、预热队列及训练循环
-├── baseline/
-│   └── AIC_and_MDL.py       # 传统源个数估计方法实现
-└── README.md
+---
+
+## 🚀 How to Use
+
+### 1. Prerequisites
+Install the required Python packages:
+```bash
+pip install torch torchvision numpy

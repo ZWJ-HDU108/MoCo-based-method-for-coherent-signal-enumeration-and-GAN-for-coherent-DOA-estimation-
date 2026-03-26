@@ -13,7 +13,7 @@ This project provides a framework based on **MoCo v2 (Momentum Contrast)** and *
 * `main_mocov2.py`: The primary training script for MoCo including **queue warmup and the training loop**.
 * `models`: Code for **CMR-GAN**.
 * `models/arch.py`: Code for **EBlock/DBlock, SG and brach**.
-* `models/arch_util.py`: cCode for some components (LayerNorm2d).
+* `models/arch_util.py`: Code for some components (LayerNorm2d).
 * `models/GAN.py`: The whole architecture of CMR-GAN.
 * `gan_data_generator.py`: Data generation for CMR-GAN.
 * `train_gan.py`: The primary training script for CMR-GAN.

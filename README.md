@@ -8,7 +8,7 @@ This project provides a framework based on **MoCo v2 (Momentum Contrast)** and *
 
 * `MoCov2/builder.py`: Core MoCo model logic (queue management and momentum updates).
 * `MoCov2/SupLoss.py`: Implementation of the **Asymmetric Supervised Contrastive Loss**.
-* `data/data_generator.py`: **on-the-fly** data for source enumeration.
+* `data/data_generator.py`: **on-the-fly** data generation for source enumeration.
 * `compared_models`: Diferent compared models for source enumeration in the paper.
 * `main_mocov2.py`: The primary training script for MoCo including **queue warmup and the training loop**.
 * `models`: Code for **CMR-GAN**.
